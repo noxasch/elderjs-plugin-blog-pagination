@@ -32,7 +32,7 @@ plugins: {
 
 ## Blog route.js
 
-As of current state, i have no idea how to override the permalink function, so you have to copy and paste this code into your `route.js`.
+As of current state, i have no idea how to override the permalink function, so you have to copy and paste this code into your `route.js`. If you figure out how, do make a pull request or create a new issue.
 
 ```js
 module.exports = {
@@ -70,7 +70,7 @@ module.exports = {
     {#if request.hasPrevious }
       <a href="{helpers.permalinks.blog(request.previousPage)}" class="prev">&lsaquo;</a>
     {/if}
-    Page {#if request.page === undefined} 1 {:else} {parseInt(request.page)} {/if} / {request.lastPage}
+    Page {#if request.page === undefined} 1 {:else} {request.page} {/if} / {request.lastPage}
     {#if request.hasNext}
       <a href="{helpers.permalinks.blog(request.nextPage)}" class="next">&rsaquo;</a>
     {/if}
