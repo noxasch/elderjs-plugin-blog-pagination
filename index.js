@@ -1,56 +1,40 @@
+const createRouteList = require('./utils/createRouteList');
+
 const plugin = {
-  name: 'elderjs-plugin-your-plugin',
-  description: `[copy and paste the start of your readme]`,
-  init: (plugin) => {
-    // this is a sync function that runs on plugin initialization.
-    // if you need async, it is recommended that you extract the async logic to run on the 'bootstrap' hook.
-
-    // Plugins have their own closure scope. This means that if you set:
-    // plugin.init = true
-    // you will have access to plugin.init in all of your hooks.
-    // this data can be updated in hooks and will be persistent between page loads.
-    
-    // IMPORTANT: It is important to note that since builds are run across child processes, 
-    // the 'plugin' object is not consistent across all processes.
-
-    // Plugins also get the build settings (plugin.settings) and the config (plugin.config) settings. 
- 
+  name: 'elderjs-plugin-blog-pagination',
+  description: `Generate pagination from markdown blog post`,
+  init: async (plugin) => {
     return plugin;
   },
   hooks: [
     {
-      hook: 'bootstrap',
-      name: 'yourFirstHook',
-      description: `A description of what this hook does.`,
-      priority: 50,
-      run: async ({ plugin, routes }) => {
+      hook: 'allRequests',
+      name: 'AddIndexPaginationRequest',
+      description: 'Generate pagination request object from markdown data',
+      run: ({ data, allRequests, settings }) => {
+        const hasPluginMarkdown = '@elderjs/plugin-markdown' in settings.plugins;
+        const postPerPage = plugin.config.postPerPage;
+        const routesList = plugin.config.routes;
+        const template = plugin.config.indexTemplate;
 
-        // all props and mutations are detailed here: https://github.com/Elderjs/elderjs/blob/master/src/hooks/hookInterface.ts
-        // if you are looking for details on what a prop or mutation represents you can read this: https://github.com/Elderjs/elderjs/blob/master/src/hooks/hookEntityDefinitions.ts
-
-        // here is how you'd read the init property set in the init() function
-        plugin.bootstrapRan = true;
-        return {
-          plugin,
-        };
-      }
-    },
-    {
-      hook: 'request',
-      name: 'yourSecondHook',
-      description: `A description of what this hook does.`,
-      priority: 50,
-      run: async ({ plugin, routes }) => {
-        // plugin.bootstrapRan will alaways be true in this example because `bootstrap` runs before `request`. 
-        return {
-          plugin,
-        };
+        if (hasPluginMarkdown) {
+          routesList.forEach((route) => {
+            const slugList = createRouteList(data, postPerPage, route, template);
+            allRequests = [...allRequests, ...slugList];
+          });
+        } else {
+          console.error('Skipping pagination@elderjs/plugin-markdown no detected in elderjs plugin.');
+        }
+        return { allRequests };
       }
     },
   ],
-  config: { // here is where you set the default configs for your plugin. These are merged with the configs found in the user's elder.config.js file.
-    doMagic: true,
+  config: {
+    routes: ['blog'],
+    postPerPage: 5,
+    indexTemplate: 'BlogIndex'
   },
+
 };
 
 module.exports = plugin;
