@@ -2,6 +2,8 @@
   "name": "elderjs-plugin-blog-pagination",
   "version": "0.1.0",
   "author": "Alexander Dischberg",
+  "private": false,
+  "homepage": "https://github.com/noxasch/elderjs-plugin-blog-pagination",
   "description": "Easily Generate pagination from @elderjs/plugin-markdown for your Elder.js powered website.",
   "keywords": [
     "elder.js",
@@ -12,6 +14,10 @@
     "site",
     "generator"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noxasch/elderjs-plugin-blog-pagination"
+  },
   "license": "MIT",
   "main": "index.js",
   "dependencies": {}
