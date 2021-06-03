@@ -12,7 +12,8 @@
     "ssg",
     "static",
     "site",
-    "generator"
+    "generator",
+    "pagination"
   ],
   "repository": {
     "type": "git",
