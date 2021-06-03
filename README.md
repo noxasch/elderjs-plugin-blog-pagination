@@ -70,7 +70,7 @@ module.exports = {
     {#if request.hasPrevious }
       <a href="{helpers.permalinks.blog(request.previousPage)}" class="prev">&lsaquo;</a>
     {/if}
-    Page {#if request.page === undefined} 1 {:else} {parseInt(request.page)} {/if} / {request.lastPage}
+    Page {#if request.page === undefined} 1 {:else} {request.page} {/if} / {request.lastPage}
     {#if request.hasNext}
       <a href="{helpers.permalinks.blog(request.nextPage)}" class="next">&rsaquo;</a>
     {/if}
