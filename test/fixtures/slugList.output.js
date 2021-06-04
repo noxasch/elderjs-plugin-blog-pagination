@@ -8,6 +8,7 @@ const pages = 4;
 const slugList = [
   {
     slug: 'blog',
+    page: 1,
     route: route,
     postStart: 0,
     postEnd: postPerPage,
@@ -53,7 +54,7 @@ const slugList = [
     hasPrevious: true,
     previousPage: { slug: `blog/3`, },
     hasNext: false,
-    nextPage: { slug: `blog/` },
+    nextPage: undefined,
     template: template
   }
 ];
