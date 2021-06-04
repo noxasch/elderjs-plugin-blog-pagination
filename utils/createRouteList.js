@@ -7,7 +7,7 @@ function createRouteList(data, postPerPage, route, template) {
   if (pages > 1) {
     for (let i = 0; i < pages; i++) {
       if (i === 0) slugList.push({
-        slug: 'blog',
+        slug: route,
         page: i + 1,
         route: route,
         postStart: 0,
@@ -15,26 +15,26 @@ function createRouteList(data, postPerPage, route, template) {
         lastPage: pages,
         hasPrevious: false,
         hasNext: true,
-        nextPage: { slug: `blog/${i + 2}` },
+        nextPage: { slug: `${route}/${i + 2}` },
         template: template
       });
       else slugList.push({
-        slug: `blog/${i + 1}`,
+        slug: `${route}/${i + 1}`,
         page: i + 1,
         route: route,
         postStart: i * postPerPage,
         postEnd: (i * postPerPage) + postPerPage,
         lastPage: pages,
         hasPrevious: true,
-        previousPage: { slug: `blog/${(i - 1 === 0) ? '' : i}`, },
+        previousPage: { slug: `${route}/${(i - 1 === 0) ? '' : i}`, },
         hasNext: i !== pages - 1,
-        nextPage: (i + 1 === pages) ? undefined : { slug: `blog/${i + 2}` },
+        nextPage: (i + 1 === pages) ? undefined : { slug: `${route}/${i + 2}` },
         template: template
       });
     }
   } else {
     slugList.push({
-      slug: 'blog',
+      slug: route,
       page: 1,
       route: route,
       postStart: 0,
