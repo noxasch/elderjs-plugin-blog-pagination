@@ -83,5 +83,5 @@ If you have any idea on how to support other than `@elderjs/plugin-markdown` out
 
 ## TODO
 
-- [ ] add unit test
+- [x] add unit test
 - [ ] add github action
