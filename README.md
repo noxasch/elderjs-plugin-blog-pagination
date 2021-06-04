@@ -22,8 +22,13 @@ Once installed, open your `elder.config.js` and configure the plugin by adding `
 
 ```javascript
 plugins: {
+  // other plugins
+  '@elderjs/plugin-markdown': {
+    routes: ['blog'],
+    // Your other settings
+  },
   'elderjs-plugin-blog-pagination': {
-    routes: ['blog'], // change to your blog route
+    routes: ['blog'], // change to your blog route same as plugin-markdown route
     postPerPage: 5, // change to your preferred post per apge
     indexTemplate: 'BlogIndex' // change to your own Index.svelte template but without `.svelte`
   },
@@ -38,9 +43,10 @@ As of current state, i have no idea how to override the permalink function, so y
 module.exports = {
   template: 'Blog.svelte',
   permalink: ({ request, settings }) => {
-    if (request.slug.includes('blog'))
-      return `${request.slug}`;
-    return `/blog/${request.slug}/`;
+    const route = 'blog';
+    if (request.slug.includes(route))
+      return `${request.slug}`; // index pagination permalink
+    return `/${route}/${request.slug}/`; // markdown blog permalink
   },
   all: () => [],
   data: {},
@@ -54,8 +60,14 @@ module.exports = {
 <script>
   import Pagination from '../../components/Pagination.svelte';
   export let data, request, helpers;
+  let blogPost = data.markdown.blog.slice(request.postStart, request.postEnd);
 </script>
 
+<ul>
+  {#each blogPost as blog}
+    <PostList {blog} {helpers}/>
+  {/each}
+</ul>
 <Pagination {data} {request} {helpers} />
 ```
 
@@ -67,13 +79,13 @@ module.exports = {
 </script>
 
 <div class="pagination">
-    {#if request.hasPrevious }
-      <a href="{helpers.permalinks.blog(request.previousPage)}" class="prev">&lsaquo;</a>
-    {/if}
-    Page {#if request.page === undefined} 1 {:else} {request.page} {/if} / {request.lastPage}
-    {#if request.hasNext}
-      <a href="{helpers.permalinks.blog(request.nextPage)}" class="next">&rsaquo;</a>
-    {/if}
+  {#if request.hasPrevious }
+    <a href="{helpers.permalinks.blog(request.previousPage)}" class="prev">&lsaquo;</a>
+  {/if}
+  Page {request.page} / {request.lastPage}
+  {#if request.hasNext}
+    <a href="{helpers.permalinks.blog(request.nextPage)}" class="next">&rsaquo;</a>
+  {/if}
 </div>
 ```
 

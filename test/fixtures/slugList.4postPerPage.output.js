@@ -1,9 +1,9 @@
 const config = require('./config');
 
-const postPerPage = config.postPerPage;
+const postPerPage = 4;
 const template = config.indexTemplate;
 const route = config.routes[0];
-const pages = 4;
+const pages = 5;
 
 const slugList = [
   {
@@ -53,6 +53,19 @@ const slugList = [
     lastPage: pages,
     hasPrevious: true,
     previousPage: { slug: `blog/3`, },
+    hasNext: true,
+    nextPage: { slug: `blog/5`, },
+    template: template
+  },
+  {
+    slug: `blog/5`,
+    page: 5,
+    route: route,
+    postStart: 4 * postPerPage,
+    postEnd: (4 * postPerPage) + postPerPage,
+    lastPage: pages,
+    hasPrevious: true,
+    previousPage: { slug: `blog/4`, },
     hasNext: false,
     nextPage: undefined,
     template: template

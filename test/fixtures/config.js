@@ -1,6 +1,6 @@
 
 const config = {
-  routes: ['blog', 'blog2'],
+  routes: ['blog', 'posts'],
   postPerPage: 5,
   indexTemplate: 'BlogIndex',
 }

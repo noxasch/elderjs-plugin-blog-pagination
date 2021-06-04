@@ -7,7 +7,8 @@ const pages = 1;
 
 const slugList2 = [
   {
-    slug: 'blog',
+    slug: route,
+    page: 1,
     route: route,
     postStart: 0,
     postEnd: postPerPage,

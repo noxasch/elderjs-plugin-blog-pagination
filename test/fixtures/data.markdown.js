@@ -23,7 +23,7 @@ const data = {
       { slug: 'post-18', },
       { slug: 'post-19', },
     ],
-    blog2: [
+    posts: [
       { slug: 'post-1', },
     ]
   }

@@ -11,7 +11,7 @@ const plugin = {
       hook: 'allRequests',
       name: 'AddIndexPaginationRequest',
       description: 'Generate pagination request object from markdown data',
-      run: ({ data, allRequests, settings }) => {
+      run: ({ plugin, data, allRequests, settings }) => {
         const hasPluginMarkdown = '@elderjs/plugin-markdown' in settings.plugins;
         const postPerPage = plugin.config.postPerPage;
         const routesList = plugin.config.routes;
@@ -23,7 +23,7 @@ const plugin = {
             allRequests = [...allRequests, ...slugList];
           });
         } else {
-          console.error('Skipping pagination@elderjs/plugin-markdown no detected in elderjs plugin.');
+          console.error('Skipping pagination as @elderjs/plugin-markdown not detected in elderjs plugin.');
         }
         return { allRequests };
       }
