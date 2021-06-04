@@ -39,8 +39,8 @@ module.exports = {
   template: 'Blog.svelte',
   permalink: ({ request, settings }) => {
     if (request.slug.includes('blog'))
-      return `${request.slug}`;
-    return `/blog/${request.slug}/`;
+      return `${request.slug}`; // index pagination permalink
+    return `/blog/${request.slug}/`; // markdown blog permalink
   },
   all: () => [],
   data: {},
@@ -67,13 +67,13 @@ module.exports = {
 </script>
 
 <div class="pagination">
-    {#if request.hasPrevious }
-      <a href="{helpers.permalinks.blog(request.previousPage)}" class="prev">&lsaquo;</a>
-    {/if}
-    Page {request.page} / {request.lastPage}
-    {#if request.hasNext}
-      <a href="{helpers.permalinks.blog(request.nextPage)}" class="next">&rsaquo;</a>
-    {/if}
+  {#if request.hasPrevious }
+    <a href="{helpers.permalinks.blog(request.previousPage)}" class="prev">&lsaquo;</a>
+  {/if}
+  Page {request.page} / {request.lastPage}
+  {#if request.hasNext}
+    <a href="{helpers.permalinks.blog(request.nextPage)}" class="next">&rsaquo;</a>
+  {/if}
 </div>
 ```
 
