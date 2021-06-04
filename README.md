@@ -60,7 +60,7 @@ module.exports = {
 <script>
   import Pagination from '../../components/Pagination.svelte';
   export let data, request, helpers;
-  let blogPost = data.markdown[request.route].slice(request.postStart, request.postEnd);
+  let blogPost = data.markdown.blog.slice(request.postStart, request.postEnd);
 </script>
 
 <ul>
