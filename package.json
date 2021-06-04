@@ -1,6 +1,6 @@
 {
   "name": "elderjs-plugin-blog-pagination",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Alexander Dischberg",
   "private": false,
   "homepage": "https://github.com/noxasch/elderjs-plugin-blog-pagination",
@@ -15,11 +15,18 @@
     "generator",
     "pagination"
   ],
+  "scripts": {
+    "test": "jest"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/noxasch/elderjs-plugin-blog-pagination"
   },
   "license": "MIT",
   "main": "index.js",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "jest": "^27.0.4"
+  }
 }
