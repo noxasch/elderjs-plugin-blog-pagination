@@ -22,8 +22,13 @@ Once installed, open your `elder.config.js` and configure the plugin by adding `
 
 ```javascript
 plugins: {
+  // other plugins
+  '@elderjs/plugin-markdown': {
+    routes: ['blog'],
+    // Your other settings
+  },
   'elderjs-plugin-blog-pagination': {
-    routes: ['blog'], // change to your blog route
+    routes: ['blog'], // change to your blog route same as plugin-markdown route
     postPerPage: 5, // change to your preferred post per apge
     indexTemplate: 'BlogIndex' // change to your own Index.svelte template but without `.svelte`
   },
