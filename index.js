@@ -11,12 +11,11 @@ const plugin = {
       hook: 'allRequests',
       name: 'AddIndexPaginationRequest',
       description: 'Generate pagination request object from markdown data',
-      run: ({ data, allRequests, settings }) => {
+      run: ({ plugin, data, allRequests, settings }) => {
         const hasPluginMarkdown = '@elderjs/plugin-markdown' in settings.plugins;
-        const customConfig = settings.plugins['elderjs-plugin-blog-pagination'];
-        const postPerPage = customConfig.postPerPage !== undefined ? customConfig.postPerPage : plugin.config.postPerPage;
-        const routesList = customConfig.routes !== undefined ? customConfig.routes : plugin.config.routes;
-        const template = customConfig.indexTemplate !== undefined ? customConfig.indexTemplate : plugin.config.indexTemplate;
+        const postPerPage = plugin.config.postPerPage;
+        const routesList = plugin.config.routes;
+        const template = plugin.config.indexTemplate;
 
         if (hasPluginMarkdown) {
           routesList.forEach((route) => {
