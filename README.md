@@ -43,7 +43,7 @@ As of current state, i have no idea how to override the permalink function, so y
 module.exports = {
   template: 'Blog.svelte',
   permalink: ({ request, settings }) => {
-    const route = settings.plugins['elderjs-plugin-blog-pagination'].routes;
+    const route = 'blog';
     if (request.slug.includes(route))
       return `${request.slug}`; // index pagination permalink
     return `/${route}/${request.slug}/`; // markdown blog permalink
