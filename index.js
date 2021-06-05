@@ -23,7 +23,7 @@ const plugin = {
             allRequests = [...allRequests, ...slugList];
           });
         } else {
-          console.error('Skipping pagination as @elderjs/plugin-markdown not detected in elderjs plugin.');
+          console.log('elderjs-plugin-blog-pagination: Skipping pagination as @elderjs/plugin-markdown not detected in elderjs plugin.');
         }
         return { allRequests };
       }
