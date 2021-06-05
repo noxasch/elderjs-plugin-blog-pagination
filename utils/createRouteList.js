@@ -4,6 +4,7 @@ function createRouteList(data, postPerPage, route, template) {
   let remainder = postCount % postPerPage;
   let slugList = [];
   if (remainder > 0) pages += 1;
+  console.log(`elderjs-plugin-blog-pagination: Processing ${postCount} post into ${pages} pages.`);
   if (pages > 1) {
     for (let i = 0; i < pages; i++) {
       if (i === 0) slugList.push({
