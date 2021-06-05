@@ -1,4 +1,4 @@
-const createRouteList = require('../src/utils/createRouteList');
+const createRouteList = require('../utils/createRouteList');
 const config = require('./fixtures/config');
 const data = require('./fixtures/data.markdown');
 const slugOutput = require('./fixtures/slugList.output');
