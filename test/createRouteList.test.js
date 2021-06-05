@@ -1,4 +1,4 @@
-const createRouteList = require('../utils/createRouteList');
+const createRouteList = require('../src/utils/createRouteList');
 const config = require('./fixtures/config');
 const data = require('./fixtures/data.markdown');
 const slugOutput = require('./fixtures/slugList.output');
@@ -7,6 +7,7 @@ const slugOutput_4post = require('./fixtures/slugList.4postPerPage.output');
 const slugMultipleRoutesOUtput = require('./fixtures/slugList.multipleRoutes.output');
 
 describe(`createRouteList`, () => {
+  console.log = jest.fn(); // disable console.log during test
   test('19 Post should output 4 page (5 post per page)', () => {
     const slugList = createRouteList(data, config.postPerPage, config.routes[0], config.indexTemplate);
     expect(slugList.length).toBe(slugOutput.length);
