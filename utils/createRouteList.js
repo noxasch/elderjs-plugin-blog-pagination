@@ -4,7 +4,7 @@ function createRouteList(data, postPerPage, route, template) {
   let remainder = postCount % postPerPage;
   let slugList = [];
   if (remainder > 0) pages += 1;
-  console.log(`elderjs-plugin-blog-pagination: Processing ${postCount} post into ${pages} pages.`);
+  console.log(`elderjs-plugin-blog-pagination: Generating route for ${postCount} posts into ${pages} pages.`);
   if (pages > 1) {
     for (let i = 0; i < pages; i++) {
       if (i === 0) slugList.push({
@@ -46,8 +46,9 @@ function createRouteList(data, postPerPage, route, template) {
       template: template
     });
   }
+  console.log(`elderjs-plugin-blog-pagination: Complete generating route for ${postCount} posts into ${pages} pages.`);
   return slugList;
 }
 
 module.exports = createRouteList;
-exports.default = createRouteList;
+
